@@ -11,24 +11,15 @@ import SwiftUI
 struct VisionOS2SampleVolumeOrnamentsApp: App {
 
     @State private var appModel = AppModel()
-
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(appModel)
+                .ornament(attachmentAnchor: .scene(.leadingFront)) {
+                    OrnamentsView()
+                }.environment(appModel)
         }
         .windowStyle(.volumetric)
-
-        ImmersiveSpace(id: appModel.immersiveSpaceID) {
-            ImmersiveView()
-                .environment(appModel)
-                .onAppear {
-                    appModel.immersiveSpaceState = .open
-                }
-                .onDisappear {
-                    appModel.immersiveSpaceState = .closed
-                }
-        }
-        .immersionStyle(selection: .constant(.mixed), in: .mixed)
+        .defaultSize(width: 600, height: 600, depth: 600)
     }
 }

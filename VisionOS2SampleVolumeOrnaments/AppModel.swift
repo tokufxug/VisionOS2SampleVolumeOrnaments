@@ -2,20 +2,18 @@
 //  AppModel.swift
 //  VisionOS2SampleVolumeOrnaments
 //
-//  Created by Sadao Tokuyama on 7/9/24.
+//  Created by Sadao Tokuyama on 7/10/24.
 //
 
-import SwiftUI
+import Foundation
+import Observation
 
-/// Maintains app-wide state
-@MainActor
-@Observable
-class AppModel {
-    let immersiveSpaceID = "ImmersiveSpace"
-    enum ImmersiveSpaceState {
-        case closed
-        case inTransition
-        case open
-    }
-    var immersiveSpaceState = ImmersiveSpaceState.closed
+enum ModelType: String {
+    case teapot = "teapot"
+    case car = "toy_car"
+    case biplane = "toy_biplane_idle"
+}
+
+@Observable class AppModel {
+    var modelType: ModelType = .teapot
 }
